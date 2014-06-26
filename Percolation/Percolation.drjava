@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<drjava version="drjava-20130901-r5756">
+  <project autorefresh="false" main="Percolation.java" root="" work="">
+    <createjar file=""/>
+    <source>
+      <file active="true" name="Percolation.java" package="" timestamp="25-Jun-2014 23:24:21">
+        <select from="2270" to="2270"/>
+        <scroll column="526" row="0"/>
+      </file>
+      <file name="WeightedQuickUnionUF.java" package="" timestamp="24-Jun-2014 02:09:59">
+        <select from="2270" to="2270"/>
+        <scroll column="526" row="0"/>
+      </file>
+      <file name="QuickFindUF.java" package="" timestamp="24-Jun-2014 02:12:06">
+        <select from="2270" to="2270"/>
+        <scroll column="526" row="0"/>
+      </file>
+      <file name="PercolationStats.java" package="" timestamp="25-Jun-2014 22:59:19">
+        <select from="2270" to="2270"/>
+        <scroll column="526" row="0"/>
+      </file>
+      <file name="PercolationVisualizer.java" package="" timestamp="25-Jun-2014 23:08:00">
+        <select from="2270" to="2270"/>
+        <scroll column="526" row="0"/>
+      </file>
+    </source>
+    <included/>
+    <excluded/>
+    <collapsed/>
+    <classpath>
+      <file absolute="false" name="../stdlib.jar"/>
+    </classpath>
+    <breakpoints/>
+    <watches/>
+    <bookmarks/>
+    <preferences/>
+  </project>
+</drjava>
