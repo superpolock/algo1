@@ -25,8 +25,8 @@
  *  @author Kevin Wayne
  */
 public class QuickFindUF {
-    private int[] id;    // id[i] = component identifier of i
-    private int count;   // number of components
+    public int[] id;    // id[i] = component identifier of i
+    public int count;   // number of components
 
     /**
      * Initializes an empty union-find data structure with N isolated components 0 through N-1.
@@ -100,8 +100,10 @@ public class QuickFindUF {
             if (uf.connected(p, q)) continue;
             uf.union(p, q);
             StdOut.println(p + " " + q);
+            StdArrayIO.print(uf.id);
         }
         StdOut.println(uf.count() + " components");
+        StdArrayIO.print(uf.id);
     }
 
 }

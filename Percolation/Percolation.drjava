@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <drjava version="drjava-20130901-r5756">
-  <project autorefresh="false" main="Percolation.java" root="" work="">
+  <project autorefresh="false" main="Percolation" root="" work="">
     <createjar file=""/>
     <source>
-      <file active="true" name="Percolation.java" package="" timestamp="25-Jun-2014 23:24:21">
-        <select from="2270" to="2270"/>
-        <scroll column="526" row="0"/>
+      <file active="true" name="Percolation.java" package="" timestamp="26-Jun-2014 19:22:28">
+        <select from="2416" to="2416"/>
+        <scroll column="383" row="0"/>
+      </file>
+      <file name="PercolationTests.java" package="" timestamp="26-Jun-2014 18:43:08">
+        <select from="2416" to="2416"/>
+        <scroll column="383" row="0"/>
       </file>
       <file name="WeightedQuickUnionUF.java" package="" timestamp="24-Jun-2014 02:09:59">
-        <select from="2270" to="2270"/>
-        <scroll column="526" row="0"/>
-      </file>
-      <file name="QuickFindUF.java" package="" timestamp="24-Jun-2014 02:12:06">
-        <select from="2270" to="2270"/>
-        <scroll column="526" row="0"/>
+        <select from="2416" to="2416"/>
+        <scroll column="383" row="0"/>
       </file>
       <file name="PercolationStats.java" package="" timestamp="25-Jun-2014 22:59:19">
-        <select from="2270" to="2270"/>
-        <scroll column="526" row="0"/>
+        <select from="2416" to="2416"/>
+        <scroll column="383" row="0"/>
       </file>
       <file name="PercolationVisualizer.java" package="" timestamp="25-Jun-2014 23:08:00">
-        <select from="2270" to="2270"/>
-        <scroll column="526" row="0"/>
+        <select from="2416" to="2416"/>
+        <scroll column="383" row="0"/>
+      </file>
+      <file name="QuickFindUF.java" package="" timestamp="26-Jun-2014 00:11:40">
+        <select from="2416" to="2416"/>
+        <scroll column="383" row="0"/>
       </file>
     </source>
     <included/>
@@ -30,8 +34,14 @@
     <classpath>
       <file absolute="false" name="../stdlib.jar"/>
     </classpath>
-    <breakpoints/>
-    <watches/>
+    <breakpoints>
+      <breakpoint enabled="true" file="Percolation.java" line="7"/>
+      <breakpoint enabled="true" file="Percolation.java" line="56"/>
+      <breakpoint enabled="true" file="PercolationTests.java" line="24"/>
+    </breakpoints>
+    <watches>
+      <watch name="openCells"/>
+    </watches>
     <bookmarks/>
     <preferences/>
   </project>
