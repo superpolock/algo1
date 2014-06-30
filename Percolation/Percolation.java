@@ -1,5 +1,5 @@
 public class Percolation {
-    public QuickFindUF uf;
+    private QuickFindUF uf;
     private int width;
     private int bottomCell;
     private boolean[] openCells;
@@ -19,7 +19,7 @@ public class Percolation {
         }
                 
     } 
-    protected int calcIndex( int i, int j ) {
+    private int calcIndex( int i, int j ) {
         return ( (i) * width + (j - 1) );
     }
    public void open(int i, int j)         // open site (row i, column j) if it is not already
