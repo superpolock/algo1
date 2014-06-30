@@ -56,21 +56,6 @@ public class Percolation {
    }
    
    public static void main(String[] args) {  // test client, described below
-       Percolation p=new Percolation(2);
-       StdArrayIO.print(p.uf.id);
-       p.open(1,1);
-       StdArrayIO.print(p.uf.id);
-       if ( p.isOpen(1,1) ) {
-           p.open(2,1);
-           StdArrayIO.print(p.uf.id);
-           if ( p.isOpen(2,1) ) {
-               if ( p.percolates() ) {
-                   StdArrayIO.print(p.uf.id);
-               }
-           }
-       }
-
-       StdArrayIO.print(p.openCells);
    
    }
 }

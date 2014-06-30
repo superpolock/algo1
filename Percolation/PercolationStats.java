@@ -17,27 +17,23 @@ public class PercolationStats {
         sampleSize = T;
     }
     public double mean() {                     // sample mean of percolation threshold
-        double sumTotal = 0;
-        for ( int idx = 0; idx < sampleSize; ++idx ) {
-            sumTotal += results[idx];
-        }
-        return sumTotal / sampleSize;
+        return StdStats.mean(results);
     }
     public double stddev() {                  // sample standard deviation of percolation threshold
-        double totalDeviation = 0;
-        double meanValue = mean();
-        for ( int idx = 0; idx < sampleSize; ++idx ) {
-            totalDeviation += Math.abs( results[idx] - meanValue );
-        }
-        return totalDeviation / sampleSize;
+        return StdStats.stddev(results);
     }
     public double confidenceLo() {            // returns lower bound of the 95% confidence interval
-        return mean() - (1.96*stddev());
+        return mean() - (1.96*stddev()/Math.sqrt(sampleSize));
     }
     public double confidenceHi() {            // returns upper bound of the 95% confidence interval
-        return mean() + (1.96*stddev());
+        return mean() + (1.96*stddev()/Math.sqrt(sampleSize));
     }
     public static void main(String[] args) {  // test client, described below
-        
+        if ( args.length == 3 ) {
+        	PercolationStats p = new PercolationStats( Integer.parseInt(args[1]), Integer.parseInt(args[2]) );
+        	StdOut.printf("mean \t= %f\n", p.mean());
+        	StdOut.printf("stddev \t= %f\n", p.stddev());
+        	StdOut.printf("95% confidence interval = %f, %f",p.confidenceLo(), p.confidenceHi());
+        }
     }
 }
