@@ -36,7 +36,7 @@ public class Percolation {
 	}
 
 	// open site (row i, column j) if it is not already
-	public final void open(final int i, final int j) {
+	public void open(final int i, final int j) {
 		if (i < 1 || i > width || j < 1 || j > width) {
 			throw new java.lang.IndexOutOfBoundsException();
 		}
@@ -57,17 +57,17 @@ public class Percolation {
 	}
 
 	// is site (row i,column j) open?
-	public final boolean isOpen(final int i, final int j) {
+	public boolean isOpen(final int i, final int j) {
 		return openCells[calcIndex(i, j)];
 	}
 
 	// is site (row i,column j) full?
-	public final boolean isFull(final int i, final int j) {
+	public boolean isFull(final int i, final int j) {
 		return (openCells[calcIndex(i, j)] && uf.connected(0, calcIndex(i, j)));
 	}
 
 	// Is there a path of "open" cells from top to bottom?
-	public final boolean percolates() { 
+	public boolean percolates() { 
 		boolean doesPercolate = false;
 		int n = 1;
 		while (n <= width && !doesPercolate) {
