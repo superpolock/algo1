@@ -12,6 +12,9 @@ public class Percolation {
 
 	// // create N-by-N grid, with all sites blocked
 	public Percolation(final int N) {
+		if ( N <= 0 ) {
+			throw new java.lang.IllegalArgumentException();
+		}
 		width = N;
 		uf = new WeightedQuickUnionUF(N * (N + 2));
 		bottomCell = N * (N + 2) - 1;
