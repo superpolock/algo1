@@ -1,17 +1,23 @@
 public class PercolationStats {
-    private double[] results; 
+    private int[] results; 
     private int sampleSize;
     public PercolationStats(int N, int T) {    // perform T independent computational experiments on an N-by-N grid
-        results = new double[T];
+        results = new int[T];
         for ( int idx = 0; idx < T; ++idx ) {
             Percolation p = new Percolation(N);
-            double cellsFilled=0;
+            int cellsFilled=0;
+            int attempts = 0;
             do {
-                int i = StdRandom.uniform(1,N);
-                int j = StdRandom.uniform(1,N);
+            	int i;
+            	int j;
+            	do {
+                	i = StdRandom.uniform(1,N);
+                	j = StdRandom.uniform(1,N);
+                	++attempts;
+            	} while ( p.isOpen(i, j) && attempts < N*N );
                 p.open(i,j);
                 ++cellsFilled;
-            } while ( !p.percolates() );
+            } while ( !p.percolates() && attempts < 2*N );
             results[idx] = cellsFilled;
         }
         sampleSize = T;
