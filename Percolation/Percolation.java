@@ -19,11 +19,13 @@ public class Percolation {
 
 		openCells[calcIndex(0, 1)] = true;
 		openCells[calcIndex(N + 1, 1)] = true;
-		for (int n = 1; n <= width; n++) {
+		for (int n = 1; n < width; n++) {
 			// open the fake top row
 			uf.union(0, n);
+		}
+		for (int n = 1; n <= width; n++) {
 			openCells[calcIndex(0, n)] = true;
-			openCells[calcIndex(N + 1, n + 1)] = true;
+			openCells[calcIndex(N + 1, n)] = true;
 		}
 
 	}
