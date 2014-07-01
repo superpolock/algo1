@@ -17,36 +17,43 @@ public class Percolation {
 		bottomCell = N * (N + 2) - 1;
 		openCells = new boolean[bottomCell + 1];
 
-		openCells[calcIndex(0, 1)] = true;
-		openCells[calcIndex(N + 1, 1)] = true;
 		for (int n = 1; n < width; n++) {
 			// open the fake top row
 			uf.union(0, n);
 		}
-		for (int n = 1; n <= width; n++) {
-			openCells[calcIndex(0, n)] = true;
-			openCells[calcIndex(N + 1, n)] = true;
+		for (int n = 0; n < width; n++) {
+			openCells[n] = true;
+			openCells[openCells.length-n-1] = true;
 		}
 
 	}
 
 	// Internally used to generate offset from row/col into single index array
 	private int calcIndex(final int i, final int j) {
+		
 		return ((i) * width + (j - 1));
+	}
+	
+	private void validateRowCol( int i, int j) {
+		if ( i < 1 || i > width || j < 1 || j > width )
+			throw new java.lang.IndexOutOfBoundsException();
 	}
 
 	// open site (row i, column j) if it is not already
 	public void open(final int i, final int j) {
-		if (i < 1 || i > width || j < 1 || j > width) {
-			throw new java.lang.IndexOutOfBoundsException();
-		}
-
+		validateRowCol(i, j);
 		openCells[calcIndex(i, j)] = true;
-		if (i >= 1 && isOpen(i - 1, j)) {
+		if ( i == 1 ) {
+			uf.union(calcIndex(i,j)-width, calcIndex(i,j));
+		}
+		if (i > 1 && isOpen(i - 1, j)) {
 			uf.union(calcIndex(i - 1, j), calcIndex(i, j));
 		}
-		if (i <= width && isOpen(i + 1, j)) {
+		if (i < width && isOpen(i + 1, j)) {
 			uf.union(calcIndex(i + 1, j), calcIndex(i, j));
+		}
+		if ( i == width ) {
+			uf.union(calcIndex(i, j)+width, calcIndex(i, j));
 		}
 		if (j > 1 && isOpen(i, j - 1)) {
 			uf.union(calcIndex(i, j - 1), calcIndex(i, j));
@@ -58,11 +65,13 @@ public class Percolation {
 
 	// is site (row i,column j) open?
 	public boolean isOpen(final int i, final int j) {
+		validateRowCol(i, j);
 		return openCells[calcIndex(i, j)];
 	}
 
 	// is site (row i,column j) full?
 	public boolean isFull(final int i, final int j) {
+		validateRowCol(i, j);
 		return (openCells[calcIndex(i, j)] && uf.connected(0, calcIndex(i, j)));
 	}
 
