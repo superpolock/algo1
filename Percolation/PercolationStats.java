@@ -11,6 +11,8 @@ public class PercolationStats {
     private double m_conHi = 0;
     
     public PercolationStats(int N, int T) {    // perform T independent computational experiments on an N-by-N grid
+    	if ( N <= 0 || T <= 0 )
+    		throw new java.lang.IllegalArgumentException();
         results = new int[T];
         totalCellsPopulated = 0;
         totalPercolations = 0;
