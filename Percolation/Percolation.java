@@ -9,6 +9,7 @@ public class Percolation {
 	private int bottomCell;
 	// Stores whether or not the cell is open
 	private boolean[] openCells;
+	private boolean m_doesPercolate;
 
 	// // create N-by-N grid, with all sites blocked
 	public Percolation(final int N) {
@@ -28,6 +29,8 @@ public class Percolation {
 			openCells[n] = true;
 			openCells[openCells.length-n-1] = true;
 		}
+		
+		m_doesPercolate = false;
 
 	}
 
@@ -45,24 +48,39 @@ public class Percolation {
 	// open site (row i, column j) if it is not already
 	public void open(final int i, final int j) {
 		validateRowCol(i, j);
-		openCells[calcIndex(i, j)] = true;
-		if ( i == 1 ) {
-			uf.union(calcIndex(i,j)-width, calcIndex(i,j));
-		}
-		if (i > 1 && isOpen(i - 1, j)) {
-			uf.union(calcIndex(i - 1, j), calcIndex(i, j));
-		}
-		if (i < width && isOpen(i + 1, j)) {
-			uf.union(calcIndex(i + 1, j), calcIndex(i, j));
-		}
-		if ( i == width ) {
-			uf.union(calcIndex(i, j)+width, calcIndex(i, j));
-		}
-		if (j > 1 && isOpen(i, j - 1)) {
-			uf.union(calcIndex(i, j - 1), calcIndex(i, j));
-		}
-		if (j < width && isOpen(i, j + 1)) {
-			uf.union(calcIndex(i, j + 1), calcIndex(i, j));
+		int localIdx = calcIndex( i, j );
+		
+		if ( !openCells[localIdx] ) {
+			openCells[calcIndex(i, j)] = true;
+			if (i > 1 ) {
+				if (isOpen(i - 1, j)) {
+					uf.union(calcIndex(i - 1, j), calcIndex(i, j));
+				}
+			}
+			else if ( i == 1 ) {
+				uf.union(calcIndex(i,j)-width, calcIndex(i,j));
+			}
+			if (i < width && isOpen(i + 1, j)) {
+				uf.union(calcIndex(i + 1, j), calcIndex(i, j));
+			}
+			else if ( i == width ) {
+				uf.union(calcIndex(i, j)+width, calcIndex(i, j));
+			}
+			if (j > 1 ) {
+				if ( isOpen(i, j - 1) ) {
+					uf.union(calcIndex(i, j - 1), calcIndex(i, j));
+				}
+			}
+			if (j < width && isOpen(i, j + 1)) {
+				uf.union(calcIndex(i, j + 1), calcIndex(i, j));
+			}
+			
+			if ( !m_doesPercolate && uf.connected(0,localIdx) ) {
+				int n = 0;
+				do {
+					m_doesPercolate = uf.connected( localIdx, this.bottomCell - n );
+				} while ( !m_doesPercolate && ++n < width ); 
+			}
 		}
 	}
 
@@ -80,12 +98,7 @@ public class Percolation {
 
 	// Is there a path of "open" cells from top to bottom?
 	public boolean percolates() { 
-		boolean doesPercolate = false;
-		int n = 1;
-		while (n <= width && !doesPercolate) {
-			doesPercolate = uf.connected(0, calcIndex(width + 1, n++));
-		}
-		return doesPercolate;
+		return m_doesPercolate;
 	}
 
 	public static void main(final String[] args) { // test client, described
