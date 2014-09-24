@@ -28,7 +28,7 @@ public class PercolationStats {
             	}
             	int i = (cellToPopulate / N) + 1;
             	int j = (cellToPopulate % N) + 1;
-            	assert( p.isOpen(i, j) );
+            	assertTrue( p.isOpen(i, j) );
                 p.open(i,j);
                 ++cellsFilled;
             } while ( !p.percolates() );
